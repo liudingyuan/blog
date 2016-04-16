@@ -57,15 +57,22 @@
 
 
 
-<meta name="description" content="眼睛和大脑">
-<meta property="og:type" content="website">
-<meta property="og:title" content="刘定源's blog">
-<meta property="og:url" content="http://liudyuan.com/blog/archives/2016/index.html">
+<meta name="description" content="两种方法都实现了三栏式布局，即左右栏定宽，中间栏宽度自适应，中间栏主要内容优先渲染。两者对三栏都运用了向左浮动，左右栏设置负外边距保证与中间栏处在一列。两者不同点在于对中间栏被左右栏遮挡的处理。
+圣杯布局：设置三栏的容器的左右内边距（数值为相应左右栏的宽度），设置左右栏为相对定位（position:relative;）,最后左右栏挪到两边（left,right）
+双飞翼布局：不使用相对定位。在DO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于圣杯布局与双飞翼布局">
+<meta property="og:url" content="http://liudyuan.com/blog/2016/04/16/关于圣杯布局与双飞翼布局/index.html">
 <meta property="og:site_name" content="刘定源's blog">
-<meta property="og:description" content="眼睛和大脑">
+<meta property="og:description" content="两种方法都实现了三栏式布局，即左右栏定宽，中间栏宽度自适应，中间栏主要内容优先渲染。两者对三栏都运用了向左浮动，左右栏设置负外边距保证与中间栏处在一列。两者不同点在于对中间栏被左右栏遮挡的处理。
+圣杯布局：设置三栏的容器的左右内边距（数值为相应左右栏的宽度），设置左右栏为相对定位（position:relative;）,最后左右栏挪到两边（left,right）
+双飞翼布局：不使用相对定位。在DO">
+<meta property="og:updated_time" content="2016-04-16T14:49:45.018Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刘定源's blog">
-<meta name="twitter:description" content="眼睛和大脑">
+<meta name="twitter:title" content="关于圣杯布局与双飞翼布局">
+<meta name="twitter:description" content="两种方法都实现了三栏式布局，即左右栏定宽，中间栏宽度自适应，中间栏主要内容优先渲染。两者对三栏都运用了向左浮动，左右栏设置负外边距保证与中间栏处在一列。两者不同点在于对中间栏被左右栏遮挡的处理。
+圣杯布局：设置三栏的容器的左右内边距（数值为相应左右栏的宽度），设置左右栏为相对定位（position:relative;）,最后左右栏挪到两边（left,right）
+双飞翼布局：不使用相对定位。在DO">
 
 
 
@@ -83,7 +90,7 @@
   };
 </script>
 
-  <title> 归档 | 刘定源's blog </title>
+  <title> 关于圣杯布局与双飞翼布局 | 刘定源's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -114,7 +121,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -202,177 +209,141 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 4 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2016/04/16/关于圣杯布局与双飞翼布局/" itemprop="url">
-              
-                <span itemprop="name">关于圣杯布局与双飞翼布局</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-16T22:16:41+08:00"
-              content="2016-04-16" >
-          04-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2016/04/14/web-design-bookmarking/" itemprop="url">
-              
-                <span itemprop="name">web design bookmarking</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-14T18:16:29+08:00"
-              content="2016-04-14" >
-          04-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2016/04/10/整理一下学习思路/" itemprop="url">
-              
-                <span itemprop="name">整理一下学习思路</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-10T21:27:46+08:00"
-              content="2016-04-10" >
-          04-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2016/04/10/序/" itemprop="url">
-              
-                <span itemprop="name">序</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-10T20:58:07+08:00"
-              content="2016-04-10" >
-          04-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于圣杯布局与双飞翼布局
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-16T22:16:41+08:00" content="2016-04-16">
+              2016-04-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/css布局/" itemprop="url" rel="index">
+                    <span itemprop="name">css布局</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/04/16/关于圣杯布局与双飞翼布局/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/16/关于圣杯布局与双飞翼布局/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>两种方法都实现了三栏式布局，即左右栏定宽，中间栏宽度自适应，中间栏主要内容优先渲染。<br>两者对三栏都运用了向左浮动，左右栏设置负外边距保证与中间栏处在一列。两者不同点在于<br>对中间栏被左右栏遮挡的处理。</p>
+<p>圣杯布局：设置三栏的容器的左右内边距（数值为相应左右栏的宽度），设置左右栏为相对<br>定位（position:relative;）,最后左右栏挪到两边（left,right）</p>
+<p>双飞翼布局：不使用相对定位。在DOM结构中给中间栏再加一层（<code>&lt;div class=&#39;main&#39;&gt;&lt;div class=&#39;main-content&#39;&gt;&lt;/div&gt;&lt;/div&gt;</code>）,然后给外层左右外边距就可以了。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/04/14/web-design-bookmarking/" rel="next" title="web design bookmarking">
+                <i class="fa fa-chevron-left"></i> web design bookmarking
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -380,6 +351,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/16/关于圣杯布局与双飞翼布局/"
+           data-title="关于圣杯布局与双飞翼布局" data-url="http://liudyuan.com/blog/blog/2016/04/16/关于圣杯布局与双飞翼布局/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -399,8 +378,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/blog/uploads/wo.png"
@@ -465,6 +453,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -549,11 +548,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=0.5.0"></script>
+
 
 
   
