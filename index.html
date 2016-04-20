@@ -226,6 +226,157 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/04/20/JS的执行环境及作用域/" itemprop="url">
+                  JS的执行环境及作用域
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-20T09:37:42+08:00" content="2016-04-20">
+              2016-04-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/04/20/JS的执行环境及作用域/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/20/JS的执行环境及作用域/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##执行环境(execution context)</p>
+<p>执行环境（又叫执行上下文）：定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个<br>与之关联的<strong>变量对象</strong>，环境中定义的所有变量和函数都保存在这个对象中。</p>
+<p>执行环境的销毁：某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量<br>和函数定义也随之销毁。</p>
+<p>在web浏览器中，全局执行环境被认为是window对象。每个函数都有自己的执行环境。</p>
+<p>执行环境栈：当浏览器载入javascript文件后，最先进入栈的是全局执行环境。在全局执行环境中调用函数时，执行流进入该函数内，函数的环境被压入栈中。执行完毕后，将该环境弹出，控制权给之前的执行环境。通过这个过程，堆栈中的<br>环境就会被依次执行并且弹出堆栈，直到回到全局环境。</p>
+<p>结论：一个执行的环境可以抽象的理解为object（this的值）。每个执行的环境主要有三个属性：变量对象、this、作用域链。</p>
+<p>##作用域和作用域链(scope chain)</p>
+<blockquote>
+<p>ECMA262这样描述：</p>
+<ul>
+<li>任何执行环境时刻的作用域，都是由作用域链来实现。</li>
+<li>在一个函数被定义的时候，会将他定义时刻的作用域链链接到这个函数对象的[[scope]]属性。</li>
+<li>在一个函数对象被调用的时候，会创建一个活动对象(也就是一个对象), 然后对于每一个函数的形参，都命名为该活动对象的命名属性, 然后将这个活动对象做为此时的作用域链(scope chain)最前端, 并将这个函数对象的[[scope]]加入到scope chain中.</li>
+</ul>
+</blockquote>
+<p>作用域链的用途：保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码<br>所在环境的变量对象。</p>
+<pre><code>var color=&apos;blue&apos;;
+function changeColor(){
+    var anotherColor=&apos;red&apos;;
+    function swapColors(){
+        var tempColor=anotherColor;
+        anotherColor=color;
+        color=tempColor;
+        //这里可以访问color,anotherColor,tempColor
+}
+    //这里可以访问color,anotherColor,但不能访问tempColor
+    swapColors();
+}
+//这里只能访问color
+changeColor();
+</code></pre><p>以上代码涉及三个执行环境：全局环境、changeColor()的局部环境、swapColors()的局部环境。</p>
+<p>作用域链为：</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/scope-chain.jpg" alt="作用域链"></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/04/16/关于圣杯布局与双飞翼布局/" itemprop="url">
                   关于圣杯布局与双飞翼布局
                 </a>
@@ -738,7 +889,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -746,7 +897,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/blog/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
