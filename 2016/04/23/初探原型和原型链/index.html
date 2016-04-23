@@ -57,15 +57,39 @@
 
 
 
-<meta name="description" content="眼睛和大脑">
-<meta property="og:type" content="website">
-<meta property="og:title" content="刘定源's blog">
-<meta property="og:url" content="http://liudyuan.com/blog/categories/css布局/index.html">
+<meta name="description" content="原型在JS中我们创建的每一个函数都有一个prototype属性，该属性是一个指针，指向该函数的原型对象。
+我们通常这样使用原型：
+
+第一行代码创建了一个构造函数，第二行在Person的原型对象中定义了一个sayName()方法。接着创建了Person的两个实例person1和person2，他们共用同一个方法sayName()。
+图解：
+
+这样做的好处是：不同对象在使用同一功能的方法时不用重复创建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初探原型和原型链">
+<meta property="og:url" content="http://liudyuan.com/blog/2016/04/23/初探原型和原型链/index.html">
 <meta property="og:site_name" content="刘定源's blog">
-<meta property="og:description" content="眼睛和大脑">
+<meta property="og:description" content="原型在JS中我们创建的每一个函数都有一个prototype属性，该属性是一个指针，指向该函数的原型对象。
+我们通常这样使用原型：
+
+第一行代码创建了一个构造函数，第二行在Person的原型对象中定义了一个sayName()方法。接着创建了Person的两个实例person1和person2，他们共用同一个方法sayName()。
+图解：
+
+这样做的好处是：不同对象在使用同一功能的方法时不用重复创建">
+<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0423-1.png">
+<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0423-2.png">
+<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0423-3.png">
+<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0423-4.png">
+<meta property="og:updated_time" content="2016-04-23T09:17:41.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刘定源's blog">
-<meta name="twitter:description" content="眼睛和大脑">
+<meta name="twitter:title" content="初探原型和原型链">
+<meta name="twitter:description" content="原型在JS中我们创建的每一个函数都有一个prototype属性，该属性是一个指针，指向该函数的原型对象。
+我们通常这样使用原型：
+
+第一行代码创建了一个构造函数，第二行在Person的原型对象中定义了一个sayName()方法。接着创建了Person的两个实例person1和person2，他们共用同一个方法sayName()。
+图解：
+
+这样做的好处是：不同对象在使用同一功能的方法时不用重复创建">
+<meta name="twitter:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0423-1.png">
 
 
 
@@ -83,7 +107,7 @@
   };
 </script>
 
-  <title> 分类: css布局 | 刘定源's blog </title>
+  <title> 初探原型和原型链 | 刘定源's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -114,7 +138,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -202,47 +226,150 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        css布局
-        <small>分类</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                初探原型和原型链
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-23T15:08:55+08:00" content="2016-04-23">
+              2016-04-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/04/23/初探原型和原型链/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/23/初探原型和原型链/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>在JS中我们创建的每一个函数都有一个prototype属性，该属性是一个指针，指向该函数的原型对象。</p>
+<p>我们通常这样使用原型：</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-1.png" alt=""></p>
+<p>第一行代码创建了一个构造函数，第二行在Person的原型对象中定义了一个sayName()方法。<br>接着创建了Person的两个实例person1和person2，他们共用同一个方法sayName()。</p>
+<p>图解：</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-2.png" alt=""></p>
+<p>这样做的好处是：不同对象在使用同一功能的方法时不用重复创建方法，还具有良好的封装性。</p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>javascript没有类，它的继承是使用原型链来实现的。</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-3.png" alt=""></p>
+<p>首先定义了两个对象Person和Animal，它们有各自的属性以及定义在原型对象上的方法。<br>重点是Animal继承了Person,这个继承是通过创建Person的实例，然后将该实例赋给Animal的<br>原型对象实现的（Animal.prototype=new Person();）。<strong>本质是重写原型对象</strong>。在确定<br>继承关系之后，又给Animal.prototype定义了一个新方法howl(),这样就在继承Person的属性和方法上添加了一个新方法。</p>
+<p>图解：</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-4.png" alt=""></p>
 
-      <h1 class="post-title">
+      
+    </div>
+    
+    <div>
+      
         
-            <a class="post-title-link" href="/blog/2016/04/16/关于圣杯布局与双飞翼布局/" itemprop="url">
-              
-                <span itemprop="name">关于圣杯布局与双飞翼布局</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
+      
+    </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-16T22:16:41+08:00"
-              content="2016-04-16" >
-          04-16
-        </time>
-      </div>
+    <footer class="post-footer">
+      
 
-    </header>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/04/22/JS的基本包装类型/" rel="next" title="JS的基本包装类型">
+                <i class="fa fa-chevron-left"></i> JS的基本包装类型
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </section>
 
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -250,6 +377,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/23/初探原型和原型链/"
+           data-title="初探原型和原型链" data-url="http://liudyuan.com/blog/blog/2016/04/23/初探原型和原型链/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -269,8 +404,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/blog/uploads/wo.png"
@@ -335,6 +479,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型"><span class="nav-number">1.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">2.</span> <span class="nav-text">原型链</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -419,6 +574,10 @@
   
 
   
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=0.5.0"></script>
+
+
 
   
 

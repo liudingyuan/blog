@@ -226,6 +226,136 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/04/23/初探原型和原型链/" itemprop="url">
+                  初探原型和原型链
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-23T15:08:55+08:00" content="2016-04-23">
+              2016-04-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/04/23/初探原型和原型链/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/23/初探原型和原型链/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>在JS中我们创建的每一个函数都有一个prototype属性，该属性是一个指针，指向该函数的原型对象。</p>
+<p>我们通常这样使用原型：</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-1.png" alt=""></p>
+<p>第一行代码创建了一个构造函数，第二行在Person的原型对象中定义了一个sayName()方法。<br>接着创建了Person的两个实例person1和person2，他们共用同一个方法sayName()。</p>
+<p>图解：</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-2.png" alt=""></p>
+<p>这样做的好处是：不同对象在使用同一功能的方法时不用重复创建方法，还具有良好的封装性。</p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>javascript没有类，它的继承是使用原型链来实现的。</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-3.png" alt=""></p>
+<p>首先定义了两个对象Person和Animal，它们有各自的属性以及定义在原型对象上的方法。<br>重点是Animal继承了Person,这个继承是通过创建Person的实例，然后将该实例赋给Animal的<br>原型对象实现的（Animal.prototype=new Person();）。<strong>本质是重写原型对象</strong>。在确定<br>继承关系之后，又给Animal.prototype定义了一个新方法howl(),这样就在继承Person的属性和方法上添加了一个新方法。</p>
+<p>图解：</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-4.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/04/22/JS的基本包装类型/" itemprop="url">
                   JS的基本包装类型
                 </a>
@@ -1026,7 +1156,7 @@ changeColor();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
