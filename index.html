@@ -226,6 +226,134 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/04/24/学习javascript闭包/" itemprop="url">
+                  学习javascript闭包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-24T10:30:50+08:00" content="2016-04-24">
+              2016-04-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/04/24/学习javascript闭包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/24/学习javascript闭包/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>闭包是指有权访问另一个函数作用域中的变量的函数。</p>
+<h2 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h2><p>两种变量的作用域：全局变量和局部变量</p>
+<p>函数内部可以访问全局变量：</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0424-1.png" alt=""></p>
+<p>反之函数外部无法访问函数内部的局部变量：<br><img src="http://7xsthh.com2.z0.glb.clouddn.com/0424-2.png" alt=""></p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0424-3.png" alt=""></p>
+<p>以上代码实现了在函数外部访问函数的局部变量。其中f2函数就是闭包。</p>
+<p>f2可以访问f1的局部变量a,但反过来f1却无法访问f2中的变量，这其实就是JS中的作用域链。<br>子对象可以一级一级的向上查找父对象的变量，反之父对象不能向下查找。</p>
+<h2 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h2><p>闭包除了可以访问函数内部的局部变量之外，还会将这些变量保存下来。</p>
+<p>这意味着在闭包的父函数调用之后，这些被保存的变量不会被销毁。闭包使用过多会影响网页的性能，IE浏览器有时会产生内存泄漏。解决方案：对于不需要使用的局部变量进行手动清除。</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/04/23/初探原型和原型链/" itemprop="url">
                   初探原型和原型链
                 </a>
@@ -1156,7 +1284,7 @@ changeColor();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

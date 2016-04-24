@@ -57,39 +57,41 @@
 
 
 
-<meta name="description" content="原型在JS中我们创建的每一个函数都有一个prototype属性，该属性是一个指针，指向该函数的原型对象。
-我们通常这样使用原型：
+<meta name="description" content="闭包是指有权访问另一个函数作用域中的变量的函数。
+变量的作用域两种变量的作用域：全局变量和局部变量
+函数内部可以访问全局变量：
 
-第一行代码创建了一个构造函数，第二行在Person的原型对象中定义了一个sayName()方法。接着创建了Person的两个实例person1和person2，他们共用同一个方法sayName()。
-图解：
-
-这样做的好处是：不同对象在使用同一功能的方法时不用重复创建">
+反之函数外部无法访问函数内部的局部变量：
+闭包
+以上代码实现了在函数外部访问函数的局部变量。其中f2函数就是闭包。
+f2可以访问f1的局部变量a,但反过来f1却无法访问f2中的变量，这其实就是JS中的作用域链。子对象可以一级一级的向上查找父对象的变量，反之父对象不能向下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初探原型和原型链">
-<meta property="og:url" content="http://liudyuan.com/blog/2016/04/23/初探原型和原型链/index.html">
+<meta property="og:title" content="学习javascript闭包">
+<meta property="og:url" content="http://liudyuan.com/blog/2016/04/24/学习javascript闭包/index.html">
 <meta property="og:site_name" content="刘定源's blog">
-<meta property="og:description" content="原型在JS中我们创建的每一个函数都有一个prototype属性，该属性是一个指针，指向该函数的原型对象。
-我们通常这样使用原型：
+<meta property="og:description" content="闭包是指有权访问另一个函数作用域中的变量的函数。
+变量的作用域两种变量的作用域：全局变量和局部变量
+函数内部可以访问全局变量：
 
-第一行代码创建了一个构造函数，第二行在Person的原型对象中定义了一个sayName()方法。接着创建了Person的两个实例person1和person2，他们共用同一个方法sayName()。
-图解：
-
-这样做的好处是：不同对象在使用同一功能的方法时不用重复创建">
-<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0423-1.png">
-<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0423-2.png">
-<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0423-3.png">
-<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0423-4.png">
-<meta property="og:updated_time" content="2016-04-23T09:17:41.781Z">
+反之函数外部无法访问函数内部的局部变量：
+闭包
+以上代码实现了在函数外部访问函数的局部变量。其中f2函数就是闭包。
+f2可以访问f1的局部变量a,但反过来f1却无法访问f2中的变量，这其实就是JS中的作用域链。子对象可以一级一级的向上查找父对象的变量，反之父对象不能向下">
+<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0424-1.png">
+<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0424-2.png">
+<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0424-3.png">
+<meta property="og:updated_time" content="2016-04-24T03:05:31.997Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初探原型和原型链">
-<meta name="twitter:description" content="原型在JS中我们创建的每一个函数都有一个prototype属性，该属性是一个指针，指向该函数的原型对象。
-我们通常这样使用原型：
+<meta name="twitter:title" content="学习javascript闭包">
+<meta name="twitter:description" content="闭包是指有权访问另一个函数作用域中的变量的函数。
+变量的作用域两种变量的作用域：全局变量和局部变量
+函数内部可以访问全局变量：
 
-第一行代码创建了一个构造函数，第二行在Person的原型对象中定义了一个sayName()方法。接着创建了Person的两个实例person1和person2，他们共用同一个方法sayName()。
-图解：
-
-这样做的好处是：不同对象在使用同一功能的方法时不用重复创建">
-<meta name="twitter:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0423-1.png">
+反之函数外部无法访问函数内部的局部变量：
+闭包
+以上代码实现了在函数外部访问函数的局部变量。其中f2函数就是闭包。
+f2可以访问f1的局部变量a,但反过来f1却无法访问f2中的变量，这其实就是JS中的作用域链。子对象可以一级一级的向上查找父对象的变量，反之父对象不能向下">
+<meta name="twitter:image" content="http://7xsthh.com2.z0.glb.clouddn.com/0424-1.png">
 
 
 
@@ -107,7 +109,7 @@
   };
 </script>
 
-  <title> 初探原型和原型链 | 刘定源's blog </title>
+  <title> 学习javascript闭包 | 刘定源's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +249,7 @@
             
             
               
-                初探原型和原型链
+                学习javascript闭包
               
             
           </h1>
@@ -259,8 +261,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-23T15:08:55+08:00" content="2016-04-23">
-              2016-04-23
+            <time itemprop="dateCreated" datetime="2016-04-24T10:30:50+08:00" content="2016-04-24">
+              2016-04-24
             </time>
           </span>
 
@@ -289,8 +291,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2016/04/23/初探原型和原型链/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/23/初探原型和原型链/" itemprop="commentsCount"></span>
+                <a href="/blog/2016/04/24/学习javascript闭包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/24/学习javascript闭包/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -312,18 +314,16 @@
       
 
       
-        <h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>在JS中我们创建的每一个函数都有一个prototype属性，该属性是一个指针，指向该函数的原型对象。</p>
-<p>我们通常这样使用原型：</p>
-<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-1.png" alt=""></p>
-<p>第一行代码创建了一个构造函数，第二行在Person的原型对象中定义了一个sayName()方法。<br>接着创建了Person的两个实例person1和person2，他们共用同一个方法sayName()。</p>
-<p>图解：</p>
-<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-2.png" alt=""></p>
-<p>这样做的好处是：不同对象在使用同一功能的方法时不用重复创建方法，还具有良好的封装性。</p>
-<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>javascript没有类，它的继承是使用原型链来实现的。</p>
-<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-3.png" alt=""></p>
-<p>首先定义了两个对象Person和Animal，它们有各自的属性以及定义在原型对象上的方法。<br>重点是Animal继承了Person,这个继承是通过创建Person的实例，然后将该实例赋给Animal的<br>原型对象实现的（Animal.prototype=new Person();）。<strong>本质是重写原型对象</strong>。在确定<br>继承关系之后，又给Animal.prototype定义了一个新方法howl(),这样就在继承Person的属性和方法上添加了一个新方法。</p>
-<p>图解：</p>
-<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0423-4.png" alt=""></p>
+        <p>闭包是指有权访问另一个函数作用域中的变量的函数。</p>
+<h2 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h2><p>两种变量的作用域：全局变量和局部变量</p>
+<p>函数内部可以访问全局变量：</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0424-1.png" alt=""></p>
+<p>反之函数外部无法访问函数内部的局部变量：<br><img src="http://7xsthh.com2.z0.glb.clouddn.com/0424-2.png" alt=""></p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0424-3.png" alt=""></p>
+<p>以上代码实现了在函数外部访问函数的局部变量。其中f2函数就是闭包。</p>
+<p>f2可以访问f1的局部变量a,但反过来f1却无法访问f2中的变量，这其实就是JS中的作用域链。<br>子对象可以一级一级的向上查找父对象的变量，反之父对象不能向下查找。</p>
+<h2 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h2><p>闭包除了可以访问函数内部的局部变量之外，还会将这些变量保存下来。</p>
+<p>这意味着在闭包的父函数调用之后，这些被保存的变量不会被销毁。闭包使用过多会影响网页的性能，IE浏览器有时会产生内存泄漏。解决方案：对于不需要使用的局部变量进行手动清除。</p>
 
       
     </div>
@@ -347,17 +347,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016/04/22/JS的基本包装类型/" rel="next" title="JS的基本包装类型">
-                <i class="fa fa-chevron-left"></i> JS的基本包装类型
+              <a href="/blog/2016/04/23/初探原型和原型链/" rel="next" title="初探原型和原型链">
+                <i class="fa fa-chevron-left"></i> 初探原型和原型链
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2016/04/24/学习javascript闭包/" rel="prev" title="学习javascript闭包">
-                学习javascript闭包 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -383,8 +379,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/23/初探原型和原型链/"
-           data-title="初探原型和原型链" data-url="http://liudyuan.com/blog/blog/2016/04/23/初探原型和原型链/">
+      <div class="ds-thread" data-thread-key="2016/04/24/学习javascript闭包/"
+           data-title="学习javascript闭包" data-url="http://liudyuan.com/blog/blog/2016/04/24/学习javascript闭包/">
       </div>
     
   </div>
@@ -490,7 +486,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型"><span class="nav-number">1.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">2.</span> <span class="nav-text">原型链</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的作用域"><span class="nav-number">1.</span> <span class="nav-text">变量的作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包"><span class="nav-number">2.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包的作用"><span class="nav-number">3.</span> <span class="nav-text">闭包的作用</span></a></li></ol></div>
             
           </div>
         </section>
