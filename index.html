@@ -226,6 +226,196 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/04/26/什么是BFC/" itemprop="url">
+                  什么是BFC
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-26T12:02:21+08:00" content="2016-04-26">
+              2016-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/04/26/什么是BFC/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/什么是BFC/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="BFC的定义"><a href="#BFC的定义" class="headerlink" title="BFC的定义"></a>BFC的定义</h2><p>BFC(Block formatting context)块级格式化上下文。它是一个独立的渲染区域，规定了内部元素如何布局，并且不会影响到外部元素。</p>
+<p>formatting context:W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。</p>
+<p>BFC布局规则：</p>
+<ol>
+<li>内部的box会在垂直方向，一个接一个地放置</li>
+<li>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠</li>
+<li>每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此</li>
+<li>BFC的区域不会与float box重叠</li>
+<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此</li>
+<li>计算BFC的高度时，浮动元素也参与计算</li>
+</ol>
+<h2 id="如何生成BFC"><a href="#如何生成BFC" class="headerlink" title="如何生成BFC"></a>如何生成BFC</h2><ul>
+<li>根元素</li>
+<li>float属性不为none</li>
+<li>position:absolute/fixed</li>
+<li>display:inline-block/table-cell/table-caption/flex/inline-flex</li>
+<li>overflow不为visible</li>
+</ul>
+<h2 id="BFC的运用"><a href="#BFC的运用" class="headerlink" title="BFC的运用"></a>BFC的运用</h2><p>1.防止margin重叠</p>
+<p>当两个或更多box垂直外边距相遇时，它们将形成一个外边距。这个外边距的高度等于两个外边距中的较大者。这就是外边距叠加。</p>
+<p>正如规则2所说:</p>
+<blockquote>
+<p>2.Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠</p>
+</blockquote>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0426-5.png" alt=""></p>
+<p>pink box的下外边距为50px,blue box的上外边距为50px.因为margin重叠，所以两个box的相距50px。如果不想它们重叠呢？让他们属于不同BFC即可。</p>
+<p>2.清除浮动</p>
+<pre><code>&lt;style&gt;
+   .page{
+        width: 480px;
+        margin: 0 auto;
+        border: 1px solid #eee;
+   }
+   .aside{
+        width: 200px;
+        height: 100px;
+        background-color: #FFC0CB;
+        float: left;
+    }
+    .main{
+        height: 400px;
+        background-color: rgba(0,0,255,0.5);
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;page&quot;&gt;
+    &lt;div class=&quot;aside&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;    
+&lt;/div&gt;
+&lt;/body&gt;
+</code></pre><p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0426-1.png" alt=""></p>
+<p>以上满足规则3</p>
+<blockquote>
+<p>3.每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此</p>
+</blockquote>
+<p>当我们给main运用overflow:hidden;后</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0426-2.png" alt=""></p>
+<p>显然这是一个清除浮动效果。满足规则4</p>
+<blockquote>
+<p>4.BFC的区域不会与float box重叠</p>
+</blockquote>
+<p>我们都知道，当aside,main都浮动时，父元素会塌陷。</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0426-3.png" alt=""></p>
+<p>给page运用:overflow:hidden;也清除浮动了</p>
+<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/0426-4.png" alt=""></p>
+<p>满足规则6：</p>
+<blockquote>
+<p>6.计算BFC的高度时，浮动元素也参与计算</p>
+</blockquote>
+<hr>
+<p>参考：<a href="http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html" target="_blank" rel="external">BFC 神奇背后的原理</a></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/04/24/学习javascript闭包/" itemprop="url">
                   学习javascript闭包
                 </a>
@@ -1284,7 +1474,7 @@ changeColor();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1292,7 +1482,7 @@ changeColor();
           
             <div class="site-state-item site-state-categories">
               <a href="/blog/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
