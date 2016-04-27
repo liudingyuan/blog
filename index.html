@@ -226,6 +226,169 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/04/27/JS中函数的四种调用方式及各自的this指向/" itemprop="url">
+                  JS中函数的四种调用方式及各自的this指向
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-27T09:55:07+08:00" content="2016-04-27">
+              2016-04-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/04/27/JS中函数的四种调用方式及各自的this指向/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/JS中函数的四种调用方式及各自的this指向/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在javascript中函数一共有四种调用方式:函数调用模式、方法调用模式、构造器调用模式和apply调用模式。</p>
+<p>this的指向会根据使用场合不同而不同，但总的来说，它指向调用函数的对象。</p>
+<h2 id="函数调用模式"><a href="#函数调用模式" class="headerlink" title="函数调用模式"></a>函数调用模式</h2><pre><code>function f(){
+    var value=1;
+    console.log(this.value);
+}
+
+var value=2;
+f();//2
+</code></pre><p>此时this是指向全局对象global的，所以才会输出2。</p>
+<h2 id="方法调用模式"><a href="#方法调用模式" class="headerlink" title="方法调用模式"></a>方法调用模式</h2><p>当一个函数被保存为一个对象的属性时，就称它为方法。</p>
+<pre><code>var person = {
+  name: &apos;xiaoming&apos;,
+  sayName: function () {
+  console.log(this.name);
+  }
+}
+person.sayName();//&apos;xiaoming&apos;
+</code></pre><p>此时this指向调用sayName()的对象person。</p>
+<h2 id="构造器调用模式"><a href="#构造器调用模式" class="headerlink" title="构造器调用模式"></a>构造器调用模式</h2><p>通过new操作符调用一个函数，会创建一个链接到该函数的原型对象的对象，this指向这个新对象。</p>
+<pre><code>function F(){
+  this.value=1;
+}
+var value=2;
+var o=new F();
+
+console.log(o.value);//1
+console.log(value);//2
+</code></pre><p>this指向创建的新对象o,所以o.value值为1，value值没有改变。</p>
+<h2 id="apply调用模式"><a href="#apply调用模式" class="headerlink" title="apply调用模式"></a>apply调用模式</h2><p>javascript中的函数也是对象，所以可以拥有方法。</p>
+<p>apply()可以改变函数的调用对象，它接收两个参数：第一个为调用该函数的对象(要绑定给this的值),第二个为参数数组。</p>
+<pre><code>function f() {
+  this.value = 1;
+}
+var value = 2;
+var o = {
+    method: f
+};
+
+console.log(value);//2
+o.method.apply();//apply()的参数为空时，默认调用全局对象。
+console.log(value);//1
+
+o.method.apply(o);//指向了对象o
+console.log(o.value);//1
+</code></pre>
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/04/26/什么是BFC/" itemprop="url">
                   什么是BFC
                 </a>
@@ -1474,7 +1637,7 @@ changeColor();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
