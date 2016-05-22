@@ -226,6 +226,205 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/05/22/JS中的克隆/" itemprop="url">
+                  JS中的克隆
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-22T18:20:08+08:00" content="2016-05-22">
+              2016-05-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/05/22/JS中的克隆/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/JS中的克隆/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>javascript有五种简单数据类型(基本数据类型)：Null、Undefined、Number、String，Boolean,一种复杂数据类型：Object。</p>
+<p>javascript变量包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值按引用访问，引用类型值按引用访问（为对象添加属性操作的是实际对象）</p>
+<h2 id="Number类型的值克隆"><a href="#Number类型的值克隆" class="headerlink" title="Number类型的值克隆"></a>Number类型的值克隆</h2><pre><code>var a=1;
+var b=a;
+a=2;
+
+console.log(a);//2
+console.log(b);//1
+</code></pre><h2 id="String类型的值克隆"><a href="#String类型的值克隆" class="headerlink" title="String类型的值克隆"></a>String类型的值克隆</h2><pre><code>var a=&apos;x&apos;;
+var b=a;
+a=&apos;y&apos;;
+
+console.log(a);//&apos;y&apos;
+console.log(b);//&apos;x&apos;
+</code></pre><h2 id="Boolean类型的值克隆"><a href="#Boolean类型的值克隆" class="headerlink" title="Boolean类型的值克隆"></a>Boolean类型的值克隆</h2><pre><code>var a=true;
+var b=a;
+a=false;
+
+console.log(a)//false
+console.log(b)//true
+</code></pre><h2 id="Object类型的值克隆"><a href="#Object类型的值克隆" class="headerlink" title="Object类型的值克隆"></a>Object类型的值克隆</h2><pre><code>var obj={
+    a: 1,
+    b: {
+        b1: [&quot;hello&quot;,&quot;world&quot;],
+        b2: &quot;javascript&quot;
+    }
+}
+var newObj=obj;
+obj.a=2;
+
+console.log(obj.a);//2
+console.log(newObj.a);//2
+</code></pre><p>由以上可得出结论：简单数据类型的值克隆实际上是复制了新的数据给变量，此时已经是两个不同的变量，操作其中一个变量不会影响到另一个变量；与此不同的是，Object类型的值克隆实际上并没有复制一份新的数据，只是将新变量指向了原来的对象，相当于两个变量共享一个对象。这就造成了一个问题，操作其中一个变量将会影响另一个变量。怎样才能真正的克隆对象，得到一个新的与原来毫不相干的对象呢？可以自定义一个函数，实现真正的完整克隆。</p>
+<h2 id="完整的对象克隆"><a href="#完整的对象克隆" class="headerlink" title="完整的对象克隆"></a>完整的对象克隆</h2><pre><code>function cloneObject(src){
+var obj,i;
+if (typeof src !==&quot;object&quot;||src===null) {return src;}
+if (src.constructor===Array) {
+    obj=[];
+    for(i=0;i&lt;src.length;i++){
+        if (typeof src[i]===&quot;object&quot;) {
+            obj[i]=arguments.callee(src[i]);
+        }
+        else{
+            obj[i]=src[i];
+        }
+    }
+}
+else{
+    obj={};
+    for(i in src){
+        if (typeof obj[i]===&quot;object&quot;) {
+            obj[i]=arguments.callee(src[i]);
+        }
+        else{
+            obj[i]=src[i];
+        }
+    }
+}
+return obj;
+}
+</code></pre><p>其中用到了递归，实现了对象的深度复制。</p>
+<p>另一种好像很优雅的写法:</p>
+<pre><code>function clone(src){
+var str,obj=src.constructor===Array?[]:{};
+if (typeof src !==&quot;object&quot;){
+    return src;
+}
+else if(window.JSON){
+    str=JSON.stringify(src);
+    obj=JSON.parse(str);
+}
+else{
+    for(var i in src){
+        obj[i]=typeof src[i]===&quot;object&quot;?arguments.callee(src[i]):src[i];
+    }
+}
+return obj;
+}
+</code></pre><p>JSON.string()将对象转化成字符串，JSON.parse()将字符串还原成对象。通过这种方法实现对象的深度复制。低版本浏览器就用遍历和递归。</p>
+<hr>
+<p>参考：<a href="http://sentsin.com/web/21.html" target="_blank" rel="external">也谈JavaScript对象之深度克隆</a></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/05/07/head标签/" itemprop="url">
                   HTML head标签
                 </a>
@@ -1206,14 +1405,12 @@ console.log(o.value);//1
       
         
           
-            <p>##执行环境(execution context)</p>
-<p>执行环境（又叫执行上下文）：定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个<br>与之关联的<strong>变量对象</strong>，环境中定义的所有变量和函数都保存在这个对象中。</p>
+            <h2 id="执行环境-execution-context"><a href="#执行环境-execution-context" class="headerlink" title="执行环境(execution context)"></a>执行环境(execution context)</h2><p>执行环境（又叫执行上下文）：定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的<strong>变量对象</strong>，环境中定义的所有变量和函数都保存在这个对象中。</p>
 <p>执行环境的销毁：某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量<br>和函数定义也随之销毁。</p>
 <p>在web浏览器中，全局执行环境被认为是window对象。每个函数都有自己的执行环境。</p>
-<p>执行环境栈：当浏览器载入javascript文件后，最先进入栈的是全局执行环境。在全局执行环境中调用函数时，执行流进入该函数内，函数的环境被压入栈中。执行完毕后，将该环境弹出，控制权给之前的执行环境。通过这个过程，堆栈中的<br>环境就会被依次执行并且弹出堆栈，直到回到全局环境。</p>
+<p>执行环境栈：当浏览器载入javascript文件后，最先进入栈的是全局执行环境。在全局执行环境中调用函数时，执行流进入该函数内，函数的环境被压入栈中。执行完毕后，将该环境弹出，控制权给之前的执行环境。通过这个过程，堆栈中的环境就会被依次执行并且弹出堆栈，直到回到全局环境。</p>
 <p>结论：一个执行的环境可以抽象的理解为object（this的值）。每个执行的环境主要有三个属性：变量对象、this、作用域链。</p>
-<p>##作用域和作用域链(scope chain)</p>
-<blockquote>
+<h2 id="作用域和作用域链-scope-chain"><a href="#作用域和作用域链-scope-chain" class="headerlink" title="作用域和作用域链(scope chain)"></a>作用域和作用域链(scope chain)</h2><blockquote>
 <p>ECMA262这样描述：</p>
 <ul>
 <li>任何执行环境时刻的作用域，都是由作用域链来实现。</li>
@@ -1510,128 +1707,13 @@ changeColor();
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/04/10/序/" itemprop="url">
-                  序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-10T20:58:07+08:00" content="2016-04-10">
-              2016-04-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/观点与感想/" itemprop="url" rel="index">
-                    <span itemprop="name">观点与感想</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2016/04/10/序/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/序/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>谨以此博客记录我的成长。</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1670,7 +1752,7 @@ changeColor();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

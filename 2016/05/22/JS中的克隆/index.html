@@ -57,24 +57,34 @@
 
 
 
-<meta name="description" content="执行环境(execution context)执行环境（又叫执行上下文）：定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中。
-执行环境的销毁：某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。
-在web浏览器中，全局执行环境被认为是window对象。每个函数都有自">
+<meta name="description" content="javascript有五种简单数据类型(基本数据类型)：Null、Undefined、Number、String，Boolean,一种复杂数据类型：Object。
+javascript变量包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值按引用访问，引用类型值按引用访问（为对象添加属性操作的是实际对象）
+Number类型的值克隆var a=1;
+var b=a;
+a=2;
+
+consol">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS的执行环境及作用域">
-<meta property="og:url" content="http://liudyuan.com/blog/2016/04/20/JS的执行环境及作用域/index.html">
+<meta property="og:title" content="JS中的克隆">
+<meta property="og:url" content="http://liudyuan.com/blog/2016/05/22/JS中的克隆/index.html">
 <meta property="og:site_name" content="刘定源's blog">
-<meta property="og:description" content="执行环境(execution context)执行环境（又叫执行上下文）：定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中。
-执行环境的销毁：某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。
-在web浏览器中，全局执行环境被认为是window对象。每个函数都有自">
-<meta property="og:image" content="http://7xsthh.com2.z0.glb.clouddn.com/scope-chain.jpg">
-<meta property="og:updated_time" content="2016-05-08T09:00:26.699Z">
+<meta property="og:description" content="javascript有五种简单数据类型(基本数据类型)：Null、Undefined、Number、String，Boolean,一种复杂数据类型：Object。
+javascript变量包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值按引用访问，引用类型值按引用访问（为对象添加属性操作的是实际对象）
+Number类型的值克隆var a=1;
+var b=a;
+a=2;
+
+consol">
+<meta property="og:updated_time" content="2016-05-22T11:32:42.322Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS的执行环境及作用域">
-<meta name="twitter:description" content="执行环境(execution context)执行环境（又叫执行上下文）：定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中。
-执行环境的销毁：某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。
-在web浏览器中，全局执行环境被认为是window对象。每个函数都有自">
-<meta name="twitter:image" content="http://7xsthh.com2.z0.glb.clouddn.com/scope-chain.jpg">
+<meta name="twitter:title" content="JS中的克隆">
+<meta name="twitter:description" content="javascript有五种简单数据类型(基本数据类型)：Null、Undefined、Number、String，Boolean,一种复杂数据类型：Object。
+javascript变量包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值按引用访问，引用类型值按引用访问（为对象添加属性操作的是实际对象）
+Number类型的值克隆var a=1;
+var b=a;
+a=2;
+
+consol">
 
 
 
@@ -92,7 +102,7 @@
   };
 </script>
 
-  <title> JS的执行环境及作用域 | 刘定源's blog </title>
+  <title> JS中的克隆 | 刘定源's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -232,7 +242,7 @@
             
             
               
-                JS的执行环境及作用域
+                JS中的克隆
               
             
           </h1>
@@ -244,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-20T09:37:42+08:00" content="2016-04-20">
-              2016-04-20
+            <time itemprop="dateCreated" datetime="2016-05-22T18:20:08+08:00" content="2016-05-22">
+              2016-05-22
             </time>
           </span>
 
@@ -274,8 +284,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2016/04/20/JS的执行环境及作用域/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/20/JS的执行环境及作用域/" itemprop="commentsCount"></span>
+                <a href="/blog/2016/05/22/JS中的克隆/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/JS中的克隆/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -297,37 +307,87 @@
       
 
       
-        <h2 id="执行环境-execution-context"><a href="#执行环境-execution-context" class="headerlink" title="执行环境(execution context)"></a>执行环境(execution context)</h2><p>执行环境（又叫执行上下文）：定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的<strong>变量对象</strong>，环境中定义的所有变量和函数都保存在这个对象中。</p>
-<p>执行环境的销毁：某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量<br>和函数定义也随之销毁。</p>
-<p>在web浏览器中，全局执行环境被认为是window对象。每个函数都有自己的执行环境。</p>
-<p>执行环境栈：当浏览器载入javascript文件后，最先进入栈的是全局执行环境。在全局执行环境中调用函数时，执行流进入该函数内，函数的环境被压入栈中。执行完毕后，将该环境弹出，控制权给之前的执行环境。通过这个过程，堆栈中的环境就会被依次执行并且弹出堆栈，直到回到全局环境。</p>
-<p>结论：一个执行的环境可以抽象的理解为object（this的值）。每个执行的环境主要有三个属性：变量对象、this、作用域链。</p>
-<h2 id="作用域和作用域链-scope-chain"><a href="#作用域和作用域链-scope-chain" class="headerlink" title="作用域和作用域链(scope chain)"></a>作用域和作用域链(scope chain)</h2><blockquote>
-<p>ECMA262这样描述：</p>
-<ul>
-<li>任何执行环境时刻的作用域，都是由作用域链来实现。</li>
-<li>在一个函数被定义的时候，会将他定义时刻的作用域链链接到这个函数对象的[[scope]]属性。</li>
-<li>在一个函数对象被调用的时候，会创建一个活动对象(也就是一个对象), 然后对于每一个函数的形参，都命名为该活动对象的命名属性, 然后将这个活动对象做为此时的作用域链(scope chain)最前端, 并将这个函数对象的[[scope]]加入到scope chain中.</li>
-</ul>
-</blockquote>
-<p>作用域链的用途：保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码<br>所在环境的变量对象。</p>
-<pre><code>var color=&apos;blue&apos;;
-function changeColor(){
-    var anotherColor=&apos;red&apos;;
-    function swapColors(){
-        var tempColor=anotherColor;
-        anotherColor=color;
-        color=tempColor;
-        //这里可以访问color,anotherColor,tempColor
+        <p>javascript有五种简单数据类型(基本数据类型)：Null、Undefined、Number、String，Boolean,一种复杂数据类型：Object。</p>
+<p>javascript变量包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值按引用访问，引用类型值按引用访问（为对象添加属性操作的是实际对象）</p>
+<h2 id="Number类型的值克隆"><a href="#Number类型的值克隆" class="headerlink" title="Number类型的值克隆"></a>Number类型的值克隆</h2><pre><code>var a=1;
+var b=a;
+a=2;
+
+console.log(a);//2
+console.log(b);//1
+</code></pre><h2 id="String类型的值克隆"><a href="#String类型的值克隆" class="headerlink" title="String类型的值克隆"></a>String类型的值克隆</h2><pre><code>var a=&apos;x&apos;;
+var b=a;
+a=&apos;y&apos;;
+
+console.log(a);//&apos;y&apos;
+console.log(b);//&apos;x&apos;
+</code></pre><h2 id="Boolean类型的值克隆"><a href="#Boolean类型的值克隆" class="headerlink" title="Boolean类型的值克隆"></a>Boolean类型的值克隆</h2><pre><code>var a=true;
+var b=a;
+a=false;
+
+console.log(a)//false
+console.log(b)//true
+</code></pre><h2 id="Object类型的值克隆"><a href="#Object类型的值克隆" class="headerlink" title="Object类型的值克隆"></a>Object类型的值克隆</h2><pre><code>var obj={
+    a: 1,
+    b: {
+        b1: [&quot;hello&quot;,&quot;world&quot;],
+        b2: &quot;javascript&quot;
+    }
 }
-    //这里可以访问color,anotherColor,但不能访问tempColor
-    swapColors();
+var newObj=obj;
+obj.a=2;
+
+console.log(obj.a);//2
+console.log(newObj.a);//2
+</code></pre><p>由以上可得出结论：简单数据类型的值克隆实际上是复制了新的数据给变量，此时已经是两个不同的变量，操作其中一个变量不会影响到另一个变量；与此不同的是，Object类型的值克隆实际上并没有复制一份新的数据，只是将新变量指向了原来的对象，相当于两个变量共享一个对象。这就造成了一个问题，操作其中一个变量将会影响另一个变量。怎样才能真正的克隆对象，得到一个新的与原来毫不相干的对象呢？可以自定义一个函数，实现真正的完整克隆。</p>
+<h2 id="完整的对象克隆"><a href="#完整的对象克隆" class="headerlink" title="完整的对象克隆"></a>完整的对象克隆</h2><pre><code>function cloneObject(src){
+var obj,i;
+if (typeof src !==&quot;object&quot;||src===null) {return src;}
+if (src.constructor===Array) {
+    obj=[];
+    for(i=0;i&lt;src.length;i++){
+        if (typeof src[i]===&quot;object&quot;) {
+            obj[i]=arguments.callee(src[i]);
+        }
+        else{
+            obj[i]=src[i];
+        }
+    }
 }
-//这里只能访问color
-changeColor();
-</code></pre><p>以上代码涉及三个执行环境：全局环境、changeColor()的局部环境、swapColors()的局部环境。</p>
-<p>作用域链为：</p>
-<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/scope-chain.jpg" alt="作用域链"></p>
+else{
+    obj={};
+    for(i in src){
+        if (typeof obj[i]===&quot;object&quot;) {
+            obj[i]=arguments.callee(src[i]);
+        }
+        else{
+            obj[i]=src[i];
+        }
+    }
+}
+return obj;
+}
+</code></pre><p>其中用到了递归，实现了对象的深度复制。</p>
+<p>另一种好像很优雅的写法:</p>
+<pre><code>function clone(src){
+var str,obj=src.constructor===Array?[]:{};
+if (typeof src !==&quot;object&quot;){
+    return src;
+}
+else if(window.JSON){
+    str=JSON.stringify(src);
+    obj=JSON.parse(str);
+}
+else{
+    for(var i in src){
+        obj[i]=typeof src[i]===&quot;object&quot;?arguments.callee(src[i]):src[i];
+    }
+}
+return obj;
+}
+</code></pre><p>JSON.string()将对象转化成字符串，JSON.parse()将字符串还原成对象。通过这种方法实现对象的深度复制。低版本浏览器就用遍历和递归。</p>
+<hr>
+<p>参考：<a href="http://sentsin.com/web/21.html" target="_blank" rel="external">也谈JavaScript对象之深度克隆</a></p>
 
       
     </div>
@@ -351,17 +411,13 @@ changeColor();
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016/04/16/关于圣杯布局与双飞翼布局/" rel="next" title="关于圣杯布局与双飞翼布局">
-                <i class="fa fa-chevron-left"></i> 关于圣杯布局与双飞翼布局
+              <a href="/blog/2016/05/07/head标签/" rel="next" title="HTML head标签">
+                <i class="fa fa-chevron-left"></i> HTML head标签
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2016/04/22/JS的基本包装类型/" rel="prev" title="JS的基本包装类型">
-                JS的基本包装类型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -387,8 +443,8 @@ changeColor();
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/20/JS的执行环境及作用域/"
-           data-title="JS的执行环境及作用域" data-url="http://liudyuan.com/blog/blog/2016/04/20/JS的执行环境及作用域/">
+      <div class="ds-thread" data-thread-key="2016/05/22/JS中的克隆/"
+           data-title="JS中的克隆" data-url="http://liudyuan.com/blog/blog/2016/05/22/JS中的克隆/">
       </div>
     
   </div>
@@ -494,7 +550,7 @@ changeColor();
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行环境-execution-context"><span class="nav-number">1.</span> <span class="nav-text">执行环境(execution context)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域和作用域链-scope-chain"><span class="nav-number">2.</span> <span class="nav-text">作用域和作用域链(scope chain)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Number类型的值克隆"><span class="nav-number">1.</span> <span class="nav-text">Number类型的值克隆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String类型的值克隆"><span class="nav-number">2.</span> <span class="nav-text">String类型的值克隆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boolean类型的值克隆"><span class="nav-number">3.</span> <span class="nav-text">Boolean类型的值克隆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object类型的值克隆"><span class="nav-number">4.</span> <span class="nav-text">Object类型的值克隆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整的对象克隆"><span class="nav-number">5.</span> <span class="nav-text">完整的对象克隆</span></a></li></ol></div>
             
           </div>
         </section>
