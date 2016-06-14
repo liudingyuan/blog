@@ -226,6 +226,240 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/06/14/JavaScript作用域学习笔记/" itemprop="url">
+                  JavaScript作用域学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-14T21:59:23+08:00" content="2016-06-14">
+              2016-06-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/06/14/JavaScript作用域学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/14/JavaScript作用域学习笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="抛砖引玉"><a href="#抛砖引玉" class="headerlink" title="抛砖引玉"></a>抛砖引玉</h2><pre><code>var name = &apos;ldy&apos;;
+function echo() {
+    console.log(name);
+    var name = &apos;hello&apos;;
+    console.log(name);
+    console.log(age);
+}
+
+echo()
+</code></pre><p>一不注意可能以为结果是这样的：</p>
+<pre><code>ldy
+hello
+出错
+</code></pre><p>第一次输出name取到的是全局变量name的值，所以输出ldy，接着name的值被局部变量name覆盖，所以输出hello，最后age没有定义，所以抛错。</p>
+<p>但实际上结果是这样的：</p>
+<pre><code>undefined
+hello
+出错
+</code></pre><h2 id="JavaScript的作用域链"><a href="#JavaScript的作用域链" class="headerlink" title="JavaScript的作用域链"></a>JavaScript的作用域链</h2><p>ECMA262描述：</p>
+<blockquote>
+<ul>
+<li>任何执行上下文时刻的作用域，都是由作用域链(scope chain)来实现</li>
+<li>在一个函数被定义的时候，会将它定义时刻的scope chain链接到这个函数对象的[[scope]]属性</li>
+<li>在一个函数对象被调用的时候，会创建一个活动对象，然后对每一个函数的形参，都命名为该活动对象的命名属性，然后将这个活动对象作为此时的作用域链(scope chain)最前端，并将这个函数对象的[[scope]]加入到scope chain中</li>
+</ul>
+</blockquote>
+<p>通过一个例子说明一下这个过程：</p>
+<pre><code>var foo = function(arg1,arg2) {
+    var name = &apos;ldy&apos;;
+}
+
+foo();
+</code></pre><ol>
+<li><p>在定义foo时，会创建这个函数对象的[[scope]]属性，并将这个[[scope]]属性链接到定义它的作用域链上，此时因为foo定义在全局环境，所以此时的[[scope]]指向全局活动对象window active object</p>
+</li>
+<li><p>在调用foo时，会创建一个活动对象，并创建arguments属性，然后给这个对象添加两个命名属性arg1，arg2；对于每一个在这个函数中声明的局部变量和函数定义，都作为该活动对象的同名命名属性</p>
+</li>
+<li><p>将调用参数赋值给形式参数，对于缺少的调用参数，赋值为undefined</p>
+</li>
+<li><p>将这个活动对象作为scope chain的最前端，并将foo的[[scope]]属性所指向的，定义foo时创建的顶级活动对象加入到scope chain</p>
+</li>
+</ol>
+<p>通过这个作用域链，在发生标识符解析的时候，就会逆向查询当前作用域链列表的每一个活动对象的属性，如果找到同名就返回，找不到就是为定义。</p>
+<p>函数对象的[[scope]]属性是在函数被定义的时候决定的，不是在调用的时候。于是：</p>
+<pre><code>var name = &apos;ldy&apos;;
+
+function echo() {
+    console.log(name);
+}   
+
+function foo() {
+    var name = &apos;hello&apos;;
+    echo();
+}
+
+foo();//ldy
+</code></pre><p>综合以上，详解一个例子：</p>
+<pre><code>function factory() {
+    var name = &apos;ldy&apos;;
+    var intro = function() {
+        console.log(&apos;I am &apos;+name);
+    }
+    return intro;
+}
+
+function app(para) {
+    var name = para;
+    var func = factory();
+    func();
+}
+
+app(&apos;eve&apos;);//I am ldy
+</code></pre><p>调用app时，scope chain:{window活动对象(全局)}-&gt;{app活动对象}</p>
+<p>在刚进入app函数体时，app的活动对象有一个arguments属性，值为undefined的两个属性:name、func,值为’eve’的属性para</p>
+<p>此时的scope chain：</p>
+<pre><code>[[scope chain]] = [
+    {
+        para: &apos;eve&apos;,
+        name: undefined,
+        func: undefined,
+        arguments: []
+    },
+    {
+        window call object
+    }
+]
+</code></pre><p>当调用进入factory的函数体的时候，此时factory的scope chain：</p>
+<pre><code>[[scope chain]] = [
+    {
+        name: undefined,
+        intro: undefined
+    },
+    {
+        window call object
+    }
+]
+</code></pre><p>此时的作用域链中并不包含app的活动对象。</p>
+<p>定义intro函数时，intro函数的[[scope]]为：<br>    [[scope chain]] = [<br>        {<br>            name: ‘ldy’;<br>            intro: undefined<br>        },<br>        {<br>            window call object<br>        }<br>    ]</p>
+<p>从factory函数返回后，在app内调用intro的时候，发生了标识符解析，此时：</p>
+<pre><code>[[scope chain]] = [
+    {
+        intro call object
+    },
+    {
+        name: &apos;ldy&apos;,
+        intro: undefined
+    },
+    {
+        window call object
+    }
+]
+</code></pre><p>因为scope chain中不包含factory活动对象，name标识符解析的结果应该是factory活动对象中的name属性，也就是’ldy’。</p>
+<h2 id="JavaScriptd的预编译"><a href="#JavaScriptd的预编译" class="headerlink" title="JavaScriptd的预编译"></a>JavaScriptd的预编译</h2><p>js是一种脚本语言，js的执行过程，是一种翻译执行的过程。</p>
+<p>在js中有预编译过程，在执行每一段js代码之前，都会首先处理var关键字和function定义式。在调用函数执行之前，会首先创建一个活动对象，然后搜寻这个函数中的局部变量定义和函数定义，将变量名函数名都作为这个活动对象的同名属性，对于局部变量定义，变量的值会在真正执行的时候才计算，此时只是简单的赋为undefined</p>
+<hr>
+<p>笔记来源： <a href="http://www.laruence.com/2009/05/28/863.html" target="_blank" rel="external">鸟哥：Javascript作用域原理</a></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/05/22/JS中的克隆/" itemprop="url">
                   JS中的克隆
                 </a>
@@ -1585,128 +1819,6 @@ changeColor();
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/04/14/web-design-bookmarking/" itemprop="url">
-                  web design bookmarking
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-14T18:16:29+08:00" content="2016-04-14">
-              2016-04-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2016/04/14/web-design-bookmarking/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/web-design-bookmarking/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="http://bm.straightline.jp/" target="_blank" rel="external">http://bm.straightline.jp/</a> </p>
-<p><a href="http://4db.cc/" target="_blank" rel="external">http://4db.cc/</a> </p>
-<p><a href="http://muuuuu.org/" target="_blank" rel="external">http://muuuuu.org/</a> </p>
-<p><a href="http://responsive-jp.com/" target="_blank" rel="external">http://responsive-jp.com/</a> </p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1752,7 +1864,7 @@ changeColor();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
