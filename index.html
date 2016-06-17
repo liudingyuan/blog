@@ -226,6 +226,159 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/06/17/高性能JavaScript-01加载和执行/" itemprop="url">
+                  高性能JavaScript(一)加载和执行
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-17T21:55:32+08:00" content="2016-06-17">
+              2016-06-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/06/17/高性能JavaScript-01加载和执行/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/17/高性能JavaScript-01加载和执行/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="脚本位置"><a href="#脚本位置" class="headerlink" title="脚本位置"></a>脚本位置</h2><p><code>&lt;script&gt;</code>标签可以放在<code>&lt;head&gt;</code>和<code>&lt;body&gt;</code>中，推荐尽量放在<code>&lt;body&gt;</code>底部(<code>&lt;/body&gt;</code>前)。</p>
+<p>原因：浏览器在解析到<code>&lt;script&gt;</code>时，会下载脚本文件并执行，在这个过程中浏览器不会渲染页面。这会造成一个很明显的性能问题：脚本阻塞页面渲染。浏览器页面很可能一片空白，用户无法和页面进行交互。尽管现在浏览器都允许并行下载文件，一定程度上提高了性能，但页面渲染依然需要等待所有脚本执行完毕后才继续进行。</p>
+<h2 id="组织脚本"><a href="#组织脚本" class="headerlink" title="组织脚本"></a>组织脚本</h2><p>减少页面脚本数量可以改善性能。如果需要依赖多个脚本文件，可以将多个文件合并为一个(打包工具)。</p>
+<p>原因：脚本的下载和执行需要时间，再加上http请求带来的额外开销(下载一个100kb文件比下载4个25kb文件更快)。脚本文件越多越影响性能。</p>
+<h2 id="无阻塞脚本"><a href="#无阻塞脚本" class="headerlink" title="无阻塞脚本"></a>无阻塞脚本</h2><p>web应用越复杂，需要的js代码就越多，合并后的单个js文件越大，阻塞浏览器的时间越长。需要一个更好的方法解决这个问题，比如逐步加载js文件，在页面加载完成后才加载js文件。</p>
+<ol>
+<li><p>延迟脚本</p>
+<p>HTML4给<code>&lt;script&gt;</code>定义了一个defer属性(HTML5 增加了async)。浏览器解析到<code>&lt;script&gt;</code>时会开始下载脚本，但不会执行，直到页面加载完成(onload事件被触发前)。看个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;script defer&gt;</span><br><span class="line">        alert(&apos;defer&apos;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        alert(&apos;script&apos;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        window.onload = function() &#123;</span><br><span class="line">            alert(&apos;load&apos;);</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>浏览器依次弹出：script,defer,load。</p>
+</li>
+<li><p>动态脚本元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function loadScript(url, callback) &#123;</span><br><span class="line">  var script = document.createElement(&apos;script&apos;);</span><br><span class="line">  </span><br><span class="line">  if (script.readyState) &#123;  //for IE</span><br><span class="line">      script.onreadyStateChange = function() &#123;</span><br><span class="line">          if (script.readyState === &apos;loaded&apos; || script.readyState === &apos;complete&apos;) &#123;</span><br><span class="line">              script.onreadyStateChange = null;</span><br><span class="line">              callback();</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123;</span><br><span class="line">      script.onload = function() &#123;</span><br><span class="line">          callback();</span><br><span class="line">      &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  script.src = url;</span><br><span class="line">  document.head.appendChild(script);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>想要按顺序加载多个文件，可以这样使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">loadScript(&apos;file1.js&apos;,function() &#123;</span><br><span class="line">  loadScript(&apos;file2.js&apos;,function() &#123;</span><br><span class="line">  loadScript(&apos;file3.js&apos;,fonction() &#123;&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>当然，最好是将多个js文件合并为一个(此时是异步的,单个大文件不会有影响)。</p>
+</li>
+<li><p>XMLHttpRequest脚本注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var request = new XMLHttpRequest();</span><br><span class="line">request.onreadyStateChange = function() &#123;</span><br><span class="line">  if (request.readyState === 4) &#123;</span><br><span class="line">      if(request.state &gt;= 200 &amp;&amp; request.state &lt; 300 || request.state === 304) &#123;</span><br><span class="line">          var script = document.createElement(&apos;script&apos;);</span><br><span class="line">          script.text = request.responseText;</span><br><span class="line">          document.head.addendChild(script);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">request.open(&apos;get&apos;,&apos;file.js&apos;);</span><br><span class="line">request.send();</span><br></pre></td></tr></table></figure>
+<p>就是用AJAX加载的内联脚本，一旦添加立刻执行，但受到浏览器同源策略限制。</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>浏览器解析到<code>&lt;script&gt;</code>时会下载js文件并执行，这个过程会阻塞浏览器运行其他任务(比如页面的渲染)。</p>
+<p>提高性能的几种方法：</p>
+<ol>
+<li><p>将<code>&lt;script&gt;</code>放在<code>&lt;/body&gt;</code>前。在脚本执行前页面已完成渲染。</p>
+</li>
+<li><p>合并多个js文件。减少http请求。</p>
+</li>
+<li><p>无阻塞下载js文件</p>
+<p>a. defer、async</p>
+<p>b. 动态添加</p>
+<p>c. AJAX</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/06/14/JavaScript作用域学习笔记/" itemprop="url">
                   JavaScript作用域学习笔记
                 </a>
@@ -1698,127 +1851,6 @@ changeColor();
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/04/16/关于圣杯布局与双飞翼布局/" itemprop="url">
-                  关于圣杯布局与双飞翼布局
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-16T22:16:41+08:00" content="2016-04-16">
-              2016-04-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/css布局/" itemprop="url" rel="index">
-                    <span itemprop="name">css布局</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2016/04/16/关于圣杯布局与双飞翼布局/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/16/关于圣杯布局与双飞翼布局/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>两种方法都实现了三栏式布局，即左右栏定宽，中间栏宽度自适应，中间栏主要内容优先渲染。<br>两者对三栏都运用了向左浮动，左右栏设置负外边距保证与中间栏处在一列。两者不同点在于<br>对中间栏被左右栏遮挡的处理。</p>
-<p>圣杯布局：设置三栏的容器的左右内边距（数值为相应左右栏的宽度），设置左右栏为相对<br>定位（position:relative;）,最后左右栏挪到两边（left,right）</p>
-<p>双飞翼布局：不使用相对定位。在DOM结构中给中间栏再加一层（<code>&lt;div class=&#39;main&#39;&gt;&lt;div class=&#39;main-content&#39;&gt;&lt;/div&gt;&lt;/div&gt;</code>）,然后给外层左右外边距就可以了。</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1864,7 +1896,7 @@ changeColor();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
