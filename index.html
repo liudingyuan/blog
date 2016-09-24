@@ -226,6 +226,197 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/09/24/HTML5 video支持的视频格式/" itemprop="url">
+                  HTML5 video支持的视频格式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-24T15:46:58+08:00" content="2016-09-24">
+              2016-09-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/HTML5/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML5</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/09/24/HTML5 video支持的视频格式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/24/HTML5 video支持的视频格式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="媒体格式"><a href="#媒体格式" class="headerlink" title="媒体格式"></a>媒体格式</h2><p>HTML5<code>&lt;video&gt;</code>元素为网页提供了播放视频的功能。我们知道，视频和音频是由视频编解码器和音频编解码器处理的，不同的编解码器提供不同的压缩等级和质量。</p>
+<p>常见的视频编解码器：</p>
+<ul>
+<li>MPEG-4</li>
+<li>H.264(同时也是MPEG-4的第十部分)</li>
+<li>WMV</li>
+</ul>
+<p>常见的音频编解码器：</p>
+<ul>
+<li>AAC</li>
+<li>Ogg Vorbis</li>
+<li>MP3</li>
+</ul>
+<p>我们平时所说的视频格式通常说的是容器格式，一个容器格式被用来存储和传输编码后的视频和音频。存在许多容器格式和编解码器的组合。</p>
+<p>常见的容器格式：</p>
+<ul>
+<li>AVI</li>
+<li>MKV</li>
+<li>MP4</li>
+<li>Ogg</li>
+<li>Webm</li>
+</ul>
+<p>因为专利问题，不同的浏览器实现的<code>&lt;video&gt;</code>和<code>&lt;audio&gt;</code>不支持相同的媒体格式。</p>
+<p>为了在最新版本的浏览器使用video，可以使用WebM和MP4格式。就像这样：</p>
+<pre><code>&lt;video&gt;
+    &lt;source src=&quot;video.webm&quot; type=&quot;video/webm&quot;&gt;&lt;/source&gt;
+    &lt;source src=&quot;video.mp4&quot; type=&quot;video/mp4&quot;&gt;&lt;/source&gt;
+&lt;/video&gt;
+</code></pre><h2 id="WebM"><a href="#WebM" class="headerlink" title="WebM"></a>WebM</h2><p>webm格式基于一个受限制版本的Matroska容器格式，它通常使用VP8或者VP9视频编解码器和Vorbis或者Opus音频编解码器。webm原生支持桌面端和移动端Gecko内核、Chrome和Opera，IE和Safari需要下载插件。</p>
+<p>webm格式每个人都可以免费使用！</p>
+<h2 id="Ogg"><a href="#Ogg" class="headerlink" title="Ogg"></a>Ogg</h2><p>Ogg容器格式配合Theora视频编解码器和Vorbis音频编解码器是另一种方案，兼容性与webm差不多，只是不支持IE。</p>
+<h2 id="Media-Source-Extensions-MSE"><a href="#Media-Source-Extensions-MSE" class="headerlink" title="Media Source Extensions(MSE)"></a>Media Source Extensions(MSE)</h2><p>媒体源扩展是W3C工作草案计划的HTML媒体元素扩展，允许javascript生成媒体播放流。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p><code>&lt;video&gt;</code>对各平台兼容较好的方案有：</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Chrome</th>
+<th>Firefox</th>
+<th>IE</th>
+<th>Opera</th>
+<th>Safari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VP8 and Vorbis in WebM</td>
+<td>6.0</td>
+<td>4.0</td>
+<td>9.0</td>
+<td>10.60</td>
+<td>3.1</td>
+</tr>
+<tr>
+<td>H.264 and MP3 in MP4</td>
+<td>&radic;</td>
+<td>&radic;</td>
+<td>9.0</td>
+<td>&radic;</td>
+<td>&radic;</td>
+</tr>
+<tr>
+<td>H.264 and AAC in MP4</td>
+<td>&radic;</td>
+<td>&radic;</td>
+<td>9.0</td>
+<td>&radic;</td>
+<td>3.1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>参考：<br><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats#WebM" target="_blank" rel="external">Media formats supported by the HTML audio and video elements</a></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/06/17/高性能JavaScript-01加载和执行/" itemprop="url">
                   高性能JavaScript(一)加载和执行
                 </a>
@@ -1702,155 +1893,6 @@ console.log(o.value);//1
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/04/20/JS的执行环境及作用域/" itemprop="url">
-                  JS的执行环境及作用域
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-20T09:37:42+08:00" content="2016-04-20">
-              2016-04-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2016/04/20/JS的执行环境及作用域/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/20/JS的执行环境及作用域/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="执行环境-execution-context"><a href="#执行环境-execution-context" class="headerlink" title="执行环境(execution context)"></a>执行环境(execution context)</h2><p>执行环境（又叫执行上下文）：定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的<strong>变量对象</strong>，环境中定义的所有变量和函数都保存在这个对象中。</p>
-<p>执行环境的销毁：某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量<br>和函数定义也随之销毁。</p>
-<p>在web浏览器中，全局执行环境被认为是window对象。每个函数都有自己的执行环境。</p>
-<p>执行环境栈：当浏览器载入javascript文件后，最先进入栈的是全局执行环境。在全局执行环境中调用函数时，执行流进入该函数内，函数的环境被压入栈中。执行完毕后，将该环境弹出，控制权给之前的执行环境。通过这个过程，堆栈中的环境就会被依次执行并且弹出堆栈，直到回到全局环境。</p>
-<p>结论：一个执行的环境可以抽象的理解为object（this的值）。每个执行的环境主要有三个属性：变量对象、this、作用域链。</p>
-<h2 id="作用域和作用域链-scope-chain"><a href="#作用域和作用域链-scope-chain" class="headerlink" title="作用域和作用域链(scope chain)"></a>作用域和作用域链(scope chain)</h2><blockquote>
-<p>ECMA262这样描述：</p>
-<ul>
-<li>任何执行环境时刻的作用域，都是由作用域链来实现。</li>
-<li>在一个函数被定义的时候，会将他定义时刻的作用域链链接到这个函数对象的[[scope]]属性。</li>
-<li>在一个函数对象被调用的时候，会创建一个活动对象(也就是一个对象), 然后对于每一个函数的形参，都命名为该活动对象的命名属性, 然后将这个活动对象做为此时的作用域链(scope chain)最前端, 并将这个函数对象的[[scope]]加入到scope chain中.</li>
-</ul>
-</blockquote>
-<p>作用域链的用途：保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码<br>所在环境的变量对象。</p>
-<pre><code>var color=&apos;blue&apos;;
-function changeColor(){
-    var anotherColor=&apos;red&apos;;
-    function swapColors(){
-        var tempColor=anotherColor;
-        anotherColor=color;
-        color=tempColor;
-        //这里可以访问color,anotherColor,tempColor
-}
-    //这里可以访问color,anotherColor,但不能访问tempColor
-    swapColors();
-}
-//这里只能访问color
-changeColor();
-</code></pre><p>以上代码涉及三个执行环境：全局环境、changeColor()的局部环境、swapColors()的局部环境。</p>
-<p>作用域链为：</p>
-<p><img src="http://7xsthh.com2.z0.glb.clouddn.com/scope-chain.jpg" alt="作用域链"></p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1896,7 +1938,7 @@ changeColor();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1904,7 +1946,7 @@ changeColor();
           
             <div class="site-state-item site-state-categories">
               <a href="/blog/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
