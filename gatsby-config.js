@@ -8,6 +8,7 @@ module.exports = {
       github: `https://github.com/liudingyuan`,
     },
   },
+  pathPrefix: "/blog",
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
