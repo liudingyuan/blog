@@ -1,0 +1,1 @@
+{"data":{"site":{"siteMetadata":{"title":"HI,DY"}},"allMarkdownRemark":{"edges":[{"node":{"excerpt":"前端开发我们为什么要引入模块化，模块有什么优点： 复用性 一个应用总有一些相同和相似的部分，可能是某个功能，可能是某部分UI…","fields":{"slug":"/modules-discuss/"},"frontmatter":{"date":"01-29-2019","title":"IIFE -> CommonJS -> ES modules"}}}]}},"pageContext":{}}
