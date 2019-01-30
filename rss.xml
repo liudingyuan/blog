@@ -1,4 +1,71 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[HI,DY]]></title><description><![CDATA[Just a blog.]]></description><link>https://liudyuan.com/</link><generator>RSS for Node</generator><lastBuildDate>Tue, 29 Jan 2019 09:42:33 GMT</lastBuildDate><item><title><![CDATA[IIFE -> CommonJS -> ES modules]]></title><description><![CDATA[前端开发我们为什么要引入模块化，模块有什么优点： 复用性 一个应用总有一些相同和相似的部分，可能是某个功能，可能是某部分UI…]]></description><link>https://liudyuan.com//modules-discuss/</link><guid isPermaLink="false">https://liudyuan.com//modules-discuss/</guid><pubDate>Tue, 29 Jan 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;前端开发我们为什么要引入模块化，模块有什么优点：&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[HI,DY]]></title><description><![CDATA[Just a blog.]]></description><link>https://liudyuan.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 30 Jan 2019 12:16:03 GMT</lastBuildDate><item><title><![CDATA[RAIL模型介绍]]></title><description><![CDATA[RAIL是一个性能评估模型，将影响应用性能表现的许多因素总结为四个方面： RAIL Response 在100ms内响应用户输入。 Animation 在10ms内生成动画的一帧。每秒60帧的动画用户就会感到流畅，理论上来说16ms内（1000ms/60fps…]]></description><link>https://liudyuan.com//RAIL-model/</link><guid isPermaLink="false">https://liudyuan.com//RAIL-model/</guid><pubDate>Wed, 30 Jan 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;RAIL是一个性能评估模型，将影响应用性能表现的许多因素总结为四个方面：&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/static/19e41c829a0787e82ed8f1e76b11100e/98158/rail-model.webp&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 36.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAAAwBACdASoUAAcAPm0skkWkIqGYBABABsSzAE6ZQOEAqC8DDeyCZLVtCgAA/vztlF4rVTXnQhzTPOJasfAcb6HgOaKiqo4dF42PyAQLHG0o1avrWFbWB140cBGiHDnJtqX6xrR9MfJg0MbuXsFn7cR7Hv09ItXmP0KVhTGP0aVrw/FH3PExa8iKRmn4f040QJN+fTy2/fPPGvUhBbck/0bfDuCK3/i//yle3uCK3/i/7hhtpsAAAA==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;rail model&quot;
+        title=&quot;&quot;
+        src=&quot;/blog/static/19e41c829a0787e82ed8f1e76b11100e/4b273/rail-model.webp&quot;
+        srcset=&quot;/blog/static/19e41c829a0787e82ed8f1e76b11100e/68968/rail-model.webp 148w,
+/blog/static/19e41c829a0787e82ed8f1e76b11100e/f8cab/rail-model.webp 295w,
+/blog/static/19e41c829a0787e82ed8f1e76b11100e/4b273/rail-model.webp 590w,
+/blog/static/19e41c829a0787e82ed8f1e76b11100e/d5694/rail-model.webp 885w,
+/blog/static/19e41c829a0787e82ed8f1e76b11100e/2a1db/rail-model.webp 1180w,
+/blog/static/19e41c829a0787e82ed8f1e76b11100e/9a3a8/rail-model.webp 1770w,
+/blog/static/19e41c829a0787e82ed8f1e76b11100e/98158/rail-model.webp 2000w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;RAIL&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Response&lt;/p&gt;
+&lt;p&gt;在100ms内响应用户输入。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Animation&lt;/p&gt;
+&lt;p&gt;在10ms内生成动画的一帧。每秒60帧的动画用户就会感到流畅，理论上来说16ms内（1000ms/60fps）生成即可，但需要留一定的时间给浏览器渲染。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Idle&lt;/p&gt;
+&lt;p&gt;最大化空闲时间。不要长时间占用浏览器的主线程，否则会导致用户与页面发生交互时无法及时响应,一次任务的执行时间最好在50ms内。例如：React在提出Fiber架构之前，如果一次渲染任务耗时较长，在此期间用户的输入动作将得不到任何反馈。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Load&lt;/p&gt;
+&lt;p&gt;在2s内完成页面加载，在5s内提供可交互内容。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;采集&lt;/h2&gt;
+&lt;p&gt;哪些工具可以采集RAIL模型数据:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chrome DevTools-Performance&lt;/li&gt;
+&lt;li&gt;Lighthouse(Chrome DevTools-Audits)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developers.google.com/speed/pagespeed/insights/&quot;&gt;PageSpeed Insights&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://webpagetest.org/easy&quot;&gt;WebPageTest&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developers.google.com/web/fundamentals/performance/rail&quot;&gt;Measure Performance with the RAIL Model&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[IIFE -> CommonJS -> ES modules]]></title><description><![CDATA[前端开发我们为什么要引入模块化，模块有什么优点： 复用性 一个应用总有一些相同和相似的部分，可能是某个功能，可能是某部分UI…]]></description><link>https://liudyuan.com//modules-discuss/</link><guid isPermaLink="false">https://liudyuan.com//modules-discuss/</guid><pubDate>Tue, 29 Jan 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;前端开发我们为什么要引入模块化，模块有什么优点：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;复用性&lt;/p&gt;
